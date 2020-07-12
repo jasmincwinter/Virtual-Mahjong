@@ -26,15 +26,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4251154539030084809}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.232, y: 3.232, z: 3.232}
+  m_LocalPosition: {x: 0, y: 0, z: 3.73e-13}
+  m_LocalScale: {x: 1.2891155, y: 1.2891155, z: 1.2891155}
   m_Children: []
   m_Father: {fileID: 4392459592828566905}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.0000031314}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5553935529917770927
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -105,8 +105,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5786674461939669583}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.006, z: 0}
-  m_LocalScale: {x: 0.3939688, y: 0.1485368, z: 0.55590194}
+  m_LocalPosition: {x: 0, y: -0.04, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.09, z: 0.35}
   m_Children: []
   m_Father: {fileID: 5786674462192322515}
   m_RootOrder: 0
@@ -279,7 +279,7 @@ Transform:
   m_GameObject: {fileID: 5786674462832989543}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.10500002, z: 0}
-  m_LocalScale: {x: 0.3939688, y: 0.08, z: 0.55590194}
+  m_LocalScale: {x: 0.2, y: 0.05, z: 0.35}
   m_Children: []
   m_Father: {fileID: 5786674462192322515}
   m_RootOrder: 1
@@ -380,7 +380,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.178}
+  m_AnchoredPosition: {x: 0, y: 0.018}
   m_SizeDelta: {x: 583, y: 455}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1490672362664730322
