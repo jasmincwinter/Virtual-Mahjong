@@ -75,7 +75,9 @@ public class SimHandGrab : MonoBehaviour
 
         // reset heldObject        
         rb.isKinematic = true;
+
         heldObject.transform.SetParent(null);
+
         heldObject.transform.position = new Vector3(heldObject.transform.position.x, 6.8f, heldObject.transform.position.z);
         if (Vector3.Dot(Vector3.up, heldObject.transform.up) > 0)
         {
@@ -86,6 +88,19 @@ public class SimHandGrab : MonoBehaviour
             heldObject.transform.rotation = Quaternion.Euler(0, heldObject.transform.rotation.eulerAngles.y, 180);
         }
         heldObject = null;
-        
+
+
+        //heldObject.transform.position = new Vector3(heldObject.transform.position.x, 6.8f, heldObject.transform.position.z);
+        //if (Vector3.Dot(Vector3.up, heldObject.transform.up) > 0)
+        //{
+        //    heldObject.transform.rotation = Quaternion.Euler(0, heldObject.transform.rotation.eulerAngles.y, 0);
+        //}
+        //else
+        //{
+        //    heldObject.transform.rotation = Quaternion.Euler(0, heldObject.transform.rotation.eulerAngles.y, 180);
+        //}
+        //heldObject = null;
+
+        // rotate -90 on x axis 
     }
 }

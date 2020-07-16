@@ -8,6 +8,7 @@ public class VRGrab : MonoBehaviour
     public GameObject heldObject;           // save what we're holding
     public bool gripHeld;
     public bool isHeld;
+
     private void OnTriggerEnter(Collider other)
     {
         collidingObject = other.gameObject;
@@ -59,9 +60,11 @@ public class VRGrab : MonoBehaviour
     {
         // get rigidbody
         Rigidbody rb = heldObject.GetComponent<Rigidbody>();
+
         // throw
         rb.velocity = vrInputController.handVelocity;
         rb.angularVelocity = vrInputController.handAngularVelocity;
+
         // reset heldObject        
         heldObject.GetComponent<Rigidbody>().isKinematic = false;
         heldObject.transform.SetParent(null);
