@@ -66,6 +66,12 @@ public class SimHandMove : MonoBehaviour
             transform.Translate(Vector3.down * Time.deltaTime * moveSpeed);
         }
 
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+           transform.Translate(Vector3.down * Time.deltaTime * moveSpeed);
+
+        }
+
 
         #endregion
 
