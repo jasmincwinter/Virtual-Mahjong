@@ -112,24 +112,24 @@ public class GameManager : MonoBehaviour
     //        float smooth = speed * Time.deltaTime;
 
     //        transform.position = Vector3.MoveTowards(transform.position, aiWall, smooth);
-    //    }
+            //    }
 
-        //IEnumerator MoveSmmothly()
-        //{
-        //    float t = 0.0f;
+            //IEnumerator MoveSmmothly()
+            //{
+            //    float t = 0.0f;
 
-        //    while (t < moveDuration)
-        //    {
-        //        t += Time.deltaTime;
-        //        transform.position = Vector3.Lerp(transform.position, aiWall, t / moveDuration);
-        //        yield return null;
-        //    }
+            //    while (t < moveDuration)
+            //    {
+            //        t += Time.deltaTime;
+            //        transform.position = Vector3.Lerp(transform.position, aiWall, t / moveDuration);
+            //        yield return null;
+            //    }
 
-        //}
-        // Start is called before the first frame update
+            //}
+            // Start is called before the first frame update
 
 
-        void Start()
+            void Start()
         {
             
         }
