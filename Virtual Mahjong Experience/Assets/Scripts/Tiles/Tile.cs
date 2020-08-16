@@ -20,6 +20,15 @@ public class Tile : MonoBehaviour
 
     public Text tileText;
 
+    private bool isInTileWall;
+    public bool GetIsInTileWall()
+    { return isInTileWall; }
+
+    public void SetIsInTileWall(bool val)
+    { isInTileWall = val; }
+
+         
+
     void Start()
     {
         tileText.text = symbol.ToString() + " - " + iD;

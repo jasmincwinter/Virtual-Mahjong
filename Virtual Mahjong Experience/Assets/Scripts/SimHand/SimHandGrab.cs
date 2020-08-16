@@ -38,7 +38,7 @@ public class SimHandGrab : MonoBehaviour
     void Update()
     {
         // check for mouse input
-        if ((Input.GetKey(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.P)) && gripHeld == false)
+        if ((Input.GetKeyDown(KeyCode.P)) && gripHeld == false)
         {
             gripHeld = true;
             manualPickup = false;
@@ -51,7 +51,7 @@ public class SimHandGrab : MonoBehaviour
                 }
             }
         }
-        if ((Input.GetKeyUp(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.R)) && gripHeld == true)
+        if ((Input.GetKeyDown(KeyCode.R)) && gripHeld == true)
         {
             gripHeld = false;
          
@@ -60,13 +60,26 @@ public class SimHandGrab : MonoBehaviour
                 Release();
             }
         }
+        if(heldObject)
 
+        {
+
+            Debug.Log(Vector3.Dot(Vector3.up, heldObject.transform.up));
+        }
     }
     private void Grab()
     {
-        heldObject.transform.SetParent(snapPosition);
-        heldObject.transform.localPosition = Vector3.zero;
-        heldObject.GetComponent<Rigidbody>().isKinematic = true;
+        Tile tile = heldObject.GetComponent<Tile>();
+
+        if (tile != null && GameManager.instance.CanPickUpTile(tile))
+        {
+            GameManager.instance.PickedUpTile(tile);
+            heldObject.transform.SetParent(snapPosition);
+            heldObject.transform.localPosition = Vector3.zero;
+            heldObject.GetComponent<Rigidbody>().isKinematic = true;
+        }
+
+       
     }
     private void Release()
     {
@@ -76,16 +89,18 @@ public class SimHandGrab : MonoBehaviour
         // reset heldObject        
         rb.isKinematic = true;
         heldObject.transform.SetParent(null);
-        heldObject.transform.position = new Vector3(heldObject.transform.position.x, 6.8f, heldObject.transform.position.z);
-        if (Vector3.Dot(Vector3.up, heldObject.transform.up) > 0)
+
+        Tile tile = heldObject.GetComponent<Tile>();
+
+        if (tile != null)
         {
-            heldObject.transform.rotation = Quaternion.Euler(0, heldObject.transform.rotation.eulerAngles.y, 0);
+            GameManager.instance.DroppedTile();
         }
-        else
-        {
-            heldObject.transform.rotation = Quaternion.Euler(0, heldObject.transform.rotation.eulerAngles.y, 180);
-        }
+
         heldObject = null;
+        
+
+
         
     }
 }

@@ -18,7 +18,7 @@ public class SimHandMove : MonoBehaviour
     {
         // transform.position = location; 
         handRigidbody = GetComponent<Rigidbody>();
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.lockState = CursorLockMode.Locked;
     }
     
     // Update is called once per frame

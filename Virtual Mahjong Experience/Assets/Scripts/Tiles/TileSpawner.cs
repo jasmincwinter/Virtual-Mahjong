@@ -5,12 +5,13 @@ using System.Collections.Specialized;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TileSpawner : MonoBehaviour
 
-    // to do: grabbing tiles and creating the wall in front of us. grabbing tiles from the wall for our hand. rolling dice. how to create dependencies?
-    
-    
+// to do: grabbing tiles and creating the wall in front of us. grabbing tiles from the wall for our hand. rolling dice. how to create dependencies?
+
+
 
 {
     public List<int> mappingIDs = new List<int>();
@@ -28,9 +29,32 @@ public class TileSpawner : MonoBehaviour
 
     private Vector3 target = new Vector3(0.0f, 6.7f, 0.0f);
 
+    public int shuffleCount = 10;
+    public float shuffleDelay = 0.1f;
+
+    private Vector3 centre = new Vector3(0.0f, 6.7f, 0.0f);
+
+    // public Button shuffleButton;
+
 
     void Start()
     {
+        SpawnTiles();
+
+
+
+
+    }
+
+    public void SpawnTiles()
+    {
+        mappingIDs.Clear();
+        tileGrid.Clear();
+
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
 
         for (int i = 0; i < 136; i++)
         {
@@ -39,11 +63,11 @@ public class TileSpawner : MonoBehaviour
 
         for (int i = 0; i < gridSize; i++)
         {
-            List<bool> row = new List<bool>(); 
+            List<bool> row = new List<bool>();
             for (int j = 0; j < gridSize; j++)
             {
                 row.Add(false);
-        //       
+                //       
             }
             tileGrid.Add(row);
         }
@@ -63,19 +87,15 @@ public class TileSpawner : MonoBehaviour
                     gridStartRef.position.y,
                     gridStartRef.position.z + (cellSize * col)
                     );
-            GameObject newTile = Instantiate(tilePrefab, spawnPos, Quaternion.Euler(0,UnityEngine.Random.Range(0,180),0),transform);
+            GameObject newTile = Instantiate(tilePrefab, spawnPos, Quaternion.Euler(0, UnityEngine.Random.Range(0, 180), 0), transform);
             newTile.GetComponent<Tile>().symbol = GetSymbol(mappingIDs[i]);
+
+            TileManager.instance.AddTileToPool(newTile.GetComponent<Tile>());
+
+            transform.RotateAround(centre, Vector3.up, 70 * Time.deltaTime);
         }
-
-        // need to check position (or collider?) of previous tile so they don't spawn on top of each other 
-        // grid position and label each cell 15x15
-
-        // rotation of table 
-        // play around with cells 
-
-
     }
-    
+
     Vector3 GenerateSpawnPosition()
     {
         float spawnPosX = UnityEngine.Random.Range(-xRange, xRange);
@@ -90,38 +110,57 @@ public class TileSpawner : MonoBehaviour
     public Symbol GetSymbol(int iD)
     {
         if (iD < 36)
-            {
+        {
             return Symbol.CIRCLES;
-            }
+        }
 
         else if (iD > 36 && iD < 72)
-            {
+        {
             return Symbol.STICKS;
-            }
+        }
 
         else if (iD > 72 && iD < 108)
-            {
+        {
             return Symbol.NUMBERS;
-            }
+        }
 
         else if (iD > 108 && iD < 124)
-            {
+        {
             return Symbol.WIND;
-            }
+        }
 
         else
-            {
+        {
             return Symbol.DRAGON;
-            }
+        }
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            transform.RotateAround(target, Vector3.up, 30 * Time.deltaTime);
-        }
+        //Button button = shuffleButton.GetComponent<Button>();
+
+        //button.onClick.AddListener(ShuffleOnClick);
     }
 
-    // 0 - length of array (random) to remove mappingiDs; 
-}
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Hand")
+    //    {
+    //        StartCoroutine(ShuffleTiles());
+    //    }
+    //}
+
+
+    //private IEnumerator ShuffleTiles()
+    //{
+    //    int currentShuffleCount = 0;
+
+    //    while(currentShuffleCount < shuffleCount)
+    //    {
+    //        SpawnTiles();
+    //        yield return new WaitForSeconds(shuffleDelay);
+    //        currentShuffleCount++;
+    //    }
+        
+    }
+
