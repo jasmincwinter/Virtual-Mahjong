@@ -88,19 +88,46 @@ public class SimHandGrab : MonoBehaviour
 
         // reset heldObject        
         rb.isKinematic = true;
+
         heldObject.transform.SetParent(null);
 
+<<<<<<< HEAD
         Tile tile = heldObject.GetComponent<Tile>();
 
         if (tile != null)
+=======
+        heldObject.transform.position = new Vector3(heldObject.transform.position.x, 6.8f, heldObject.transform.position.z);
+        if (Vector3.Dot(Vector3.up, heldObject.transform.up) > 0)
+        {
+            heldObject.transform.rotation = Quaternion.Euler(0, heldObject.transform.rotation.eulerAngles.y, 0);
+        }
+        else
+>>>>>>> 0351950251efe335ba1698fe68eac02257bb6ba8
         {
             GameManager.instance.DroppedTile();
         }
 
         heldObject = null;
+<<<<<<< HEAD
         
 
 
         
+=======
+
+
+        //heldObject.transform.position = new Vector3(heldObject.transform.position.x, 6.8f, heldObject.transform.position.z);
+        //if (Vector3.Dot(Vector3.up, heldObject.transform.up) > 0)
+        //{
+        //    heldObject.transform.rotation = Quaternion.Euler(0, heldObject.transform.rotation.eulerAngles.y, 0);
+        //}
+        //else
+        //{
+        //    heldObject.transform.rotation = Quaternion.Euler(0, heldObject.transform.rotation.eulerAngles.y, 180);
+        //}
+        //heldObject = null;
+
+        // rotate -90 on x axis 
+>>>>>>> 0351950251efe335ba1698fe68eac02257bb6ba8
     }
 }
