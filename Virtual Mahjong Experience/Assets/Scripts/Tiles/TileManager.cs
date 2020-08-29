@@ -17,6 +17,7 @@ public class TileManager : MonoBehaviour
     public void Awake()
     {
         instance = this;
+        Debug.Log(gameObject.name);
     }
 
     public void AddTileToPool(Tile newTile)

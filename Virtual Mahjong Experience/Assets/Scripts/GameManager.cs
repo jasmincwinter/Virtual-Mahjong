@@ -4,12 +4,16 @@ using UnityEngine;
 public enum GameState
 {
     SHUFFLE = 0,
-    DRAW = 1,
-    SANDBOX = 2, 
+    WALL = 1,
+    DRAW = 2,
+    SANDBOX = 3, 
 
 }
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private const float aiPickUpTileDelay = 0.7f;
+
     public GameState gameState = GameState.SANDBOX;
 
     public static GameManager instance; 
@@ -37,7 +41,7 @@ public class GameManager : MonoBehaviour
     {
         //if (!canPickUp) return;
 
-        if (gameState == GameState.DRAW)
+        if (gameState == GameState.WALL)
         {
             return !tile.GetIsInTileWall();
         }
@@ -54,7 +58,7 @@ public class GameManager : MonoBehaviour
     public void DroppedTile()
     {
         Debug.Log("Tile was dropped");
-        if (gameState == GameState.DRAW)
+        if (gameState == GameState.WALL)
         {
             playerTileWalls[0].InsertTile(currentHeldTile);
             currentHeldTile.SetIsInTileWall(true);
@@ -96,7 +100,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 1; i < 4; i++)
         {
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(aiPickUpTileDelay);
             playerTileWalls[i].InsertTile(TileManager.instance.GetRandomPoolTile());
         }
 
@@ -114,18 +118,7 @@ public class GameManager : MonoBehaviour
     //        transform.position = Vector3.MoveTowards(transform.position, aiWall, smooth);
             //    }
 
-            //IEnumerator MoveSmmothly()
-            //{
-            //    float t = 0.0f;
-
-            //    while (t < moveDuration)
-            //    {
-            //        t += Time.deltaTime;
-            //        transform.position = Vector3.Lerp(transform.position, aiWall, t / moveDuration);
-            //        yield return null;
-            //    }
-
-            //}
+ 
             // Start is called before the first frame update
 
 

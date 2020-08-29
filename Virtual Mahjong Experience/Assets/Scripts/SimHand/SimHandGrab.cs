@@ -64,7 +64,7 @@ public class SimHandGrab : MonoBehaviour
 
         {
 
-            Debug.Log(Vector3.Dot(Vector3.up, heldObject.transform.up));
+            // Debug.Log(Vector3.Dot(Vector3.up, heldObject.transform.up));
         }
     }
     private void Grab()
@@ -85,6 +85,7 @@ public class SimHandGrab : MonoBehaviour
     {
         // get the rigidbody
         Rigidbody rb = heldObject.GetComponent<Rigidbody>();
+
 
         // reset heldObject        
         rb.isKinematic = true;

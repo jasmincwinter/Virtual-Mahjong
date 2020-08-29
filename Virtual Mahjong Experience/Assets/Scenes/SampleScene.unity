@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallStartReference: {fileID: 758506257}
   wallTiles: []
+  moveDuration: 1.5
 --- !u!4 &45988494
 Transform:
   m_ObjectHideFlags: 0
@@ -502,7 +503,6 @@ GameObject:
   - component: {fileID: 343357908}
   - component: {fileID: 343357907}
   - component: {fileID: 343357906}
-  - component: {fileID: 343357905}
   m_Layer: 0
   m_Name: Dice
   m_TagString: Untagged
@@ -510,18 +510,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &343357905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343357904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 768448826533a6e4a9345856181f26d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &343357906
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1378,11 +1366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9324864bdb093594f8b787ce74c3b533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLeftHand: 1
-  gripValue: 0
-  triggerValue: 0
-  handVelocity: {x: 0, y: 0, z: 0}
-  handAngularVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &725881919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,6 +1628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallStartReference: {fileID: 361671908}
   wallTiles: []
+  moveDuration: 1.5
 --- !u!4 &855870517
 Transform:
   m_ObjectHideFlags: 0
@@ -2060,7 +2044,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameState: 1
   currentHeldTile: {fileID: 0}
-  playerTileWall: {fileID: 855870516}
+  playerTileWalls:
+  - {fileID: 855870516}
+  - {fileID: 1502633824}
+  - {fileID: 1157191674}
+  - {fileID: 45988493}
+  aiPickUpDelay: 0.7
+  canPickUp: 1
+  aiWall: {x: 0, y: 0, z: 0}
+  speed: 3
 --- !u!4 &1073963827
 Transform:
   m_ObjectHideFlags: 0
@@ -2255,6 +2247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallStartReference: {fileID: 66948125}
   wallTiles: []
+  moveDuration: 1.5
 --- !u!4 &1157191675
 Transform:
   m_ObjectHideFlags: 0
@@ -2566,6 +2559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallStartReference: {fileID: 557160171}
   wallTiles: []
+  moveDuration: 1.5
 --- !u!4 &1502633825
 Transform:
   m_ObjectHideFlags: 0
@@ -2592,7 +2586,6 @@ GameObject:
   - component: {fileID: 1509997507}
   - component: {fileID: 1509997506}
   - component: {fileID: 1509997505}
-  - component: {fileID: 1509997504}
   m_Layer: 0
   m_Name: Dice 2
   m_TagString: Untagged
@@ -2600,18 +2593,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1509997504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1509997503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 768448826533a6e4a9345856181f26d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &1509997505
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2756,6 +2737,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 357128083}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1588317873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1588317875}
+  - component: {fileID: 1588317874}
+  m_Layer: 0
+  m_Name: TileManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1588317874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588317873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea13bfec98bf4f14f92028da11a0cf3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilePool: []
+--- !u!4 &1588317875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588317873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5739176, y: 6.685547, z: -1.1476332}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1701303267
 GameObject:
   m_ObjectHideFlags: 0
@@ -3741,11 +3766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9324864bdb093594f8b787ce74c3b533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLeftHand: 0
-  gripValue: 0
-  triggerValue: 0
-  handVelocity: {x: 0, y: 0, z: 0}
-  handAngularVelocity: {x: 0, y: 0, z: 0}
 --- !u!65 &2116945921
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3769,7 +3789,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2121015004}
   - component: {fileID: 2121015003}
-  - component: {fileID: 2121015002}
   m_Layer: 0
   m_Name: DiceCheckObject
   m_TagString: Untagged
@@ -3777,18 +3796,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2121015002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2121015001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4fb7909bb292de45a36774849c201bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &2121015003
 BoxCollider:
   m_ObjectHideFlags: 0
