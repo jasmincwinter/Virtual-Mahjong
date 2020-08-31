@@ -25,6 +25,7 @@ public class VRInput : MonoBehaviour
     private Vector3 previousPosition;
     public Vector3 handAngularVelocity;
     private Vector3 previousAngularRotation;
+
     void Awake()
     {
         if (isLeftHand)
@@ -57,10 +58,12 @@ public class VRInput : MonoBehaviour
         {
             isThumbstickPressed = true;
         }
+
         else if (Input.GetButtonUp(thumbstickButton))
         {
             isThumbstickPressed = false;
         }
+
         handVelocity = (this.transform.position - previousPosition) / Time.deltaTime;
         previousPosition = this.transform.position;
         handAngularVelocity = (this.transform.eulerAngles - previousAngularRotation) / Time.deltaTime;
