@@ -2001,9 +2001,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 787859399}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8189a82f95b8964fa9cf9d471fd42cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 62b347fca1f8c734392aa88db4bc957e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mappingIDs: 
+  tilePrefab: {fileID: 0}
+  gridStartRef: {fileID: 0}
+  gridSize: 15
+  cellSize: 0.4
+  shuffleCount: 10
+  shuffleDelay: 0.1
 --- !u!65 &787859403
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3438,7 +3445,7 @@ GameObject:
   - component: {fileID: 1422477936}
   m_Layer: 0
   m_Name: RightHand
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

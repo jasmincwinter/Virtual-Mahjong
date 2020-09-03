@@ -142,25 +142,27 @@ public class TileSpawner : MonoBehaviour
         //button.onClick.AddListener(ShuffleOnClick);
     }
 
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Hand")
-    //    {
-    //        StartCoroutine(ShuffleTiles());
-    //    }
-    //}
-
-
-    //private IEnumerator ShuffleTiles()
-    //{
-    //    int currentShuffleCount = 0;
-
-    //    while(currentShuffleCount < shuffleCount)
-    //    {
-    //        SpawnTiles();
-    //        yield return new WaitForSeconds(shuffleDelay);
-    //        currentShuffleCount++;
-    //    }
-        
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Hand")
+        {
+            StartCoroutine(ShuffleTiles());
+        }
     }
+
+
+    private IEnumerator ShuffleTiles()
+    {
+        int currentShuffleCount = 0;
+
+        while (currentShuffleCount < shuffleCount)
+        {
+            SpawnTiles();
+            yield return new WaitForSeconds(shuffleDelay);
+            currentShuffleCount++;
+        }
+
+    }
+
+}
 
