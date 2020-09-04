@@ -11,14 +11,21 @@ public class TileWall : MonoBehaviour
 
     public float moveDuration = 1.5f; 
 
-    public void InsertTile(Tile newTile)
+    public void InsertTile(Tile newAiTile)
     {
         if (wallTiles.Count >= 34) return;
 
-        StartCoroutine(MoveSmoothly(newTile.transform));  
 
 
-        wallTiles.Add(newTile);
+        StartCoroutine(MoveSmoothly(newAiTile.transform));
+
+
+
+
+
+        wallTiles.Add(newAiTile);
+
+        return;
 
         // next: when wall is complete, need to parent together so that player can push all forward 
         // Tile.transform.parent = newParent.transform;
@@ -31,22 +38,21 @@ public class TileWall : MonoBehaviour
         Vector3 startPos = tile.position;
         float horzoffset = 0.2f * (wallTiles.Count % 17);
         float vertoffset = .09f * Mathf.FloorToInt(wallTiles.Count / 17);
-        Vector3 endPos = wallStartReference.position + (-wallStartReference.right * horzoffset) + (Vector3.up * vertoffset); 
+        Vector3 endPos = wallStartReference.position + (-wallStartReference.right * horzoffset) + (Vector3.up * vertoffset);
 
         Quaternion startRot = tile.rotation;
-        Quaternion endRot = wallStartReference.rotation; 
-
+        Quaternion endRot = wallStartReference.rotation;
 
         while (t < 1)
         {
             tile.position = Vector3.Lerp(startPos, endPos, t);
             tile.rotation = Quaternion.Slerp(startRot, endRot, t);
             yield return null;
-            t += Time.deltaTime/moveDuration;
+            t += Time.deltaTime / moveDuration;
         }
 
-        tile.position = endPos; 
-
+        tile.position = endPos;
+    
     }
 
     void Start()

@@ -48,6 +48,8 @@ public class TileSpawner : MonoBehaviour
 
     public void SpawnTiles()
     {
+        TileManager.instance.ResetPool(); 
+
         mappingIDs.Clear();
         tileGrid.Clear();
 
@@ -144,7 +146,7 @@ public class TileSpawner : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Hand")
+        if (other.gameObject.tag == "Hand" && GameManager.instance.CanShuffle())
         {
             StartCoroutine(ShuffleTiles());
         }
@@ -162,6 +164,7 @@ public class TileSpawner : MonoBehaviour
             currentShuffleCount++;
         }
 
+        GameManager.instance.ShuffleFinished(); 
     }
 
 }

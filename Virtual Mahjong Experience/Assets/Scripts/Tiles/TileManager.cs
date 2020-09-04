@@ -39,6 +39,16 @@ public class TileManager : MonoBehaviour
         return tilePool[Random.Range(0, tilePool.Count)];
     }
 
+    public void ResetPool()
+    {
+        for (int i = tilePool.Count - 1;  i >= 0; i--)
+        {
+            Destroy(tilePool[i].gameObject);
+        }
+
+        tilePool.Clear(); 
+    }
+
     void Start()
     {
 

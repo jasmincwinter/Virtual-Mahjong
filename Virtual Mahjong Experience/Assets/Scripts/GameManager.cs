@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 public enum GameState
 {
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
             playerTileWalls[0].InsertTile(currentHeldTile);
             currentHeldTile.SetIsInTileWall(true);
             StartCoroutine(PickUpAITiles());
+
             //StartCoroutine(MoveSmoothly());
         }
 
@@ -98,14 +100,35 @@ public class GameManager : MonoBehaviour
     {
         canPickUp = false;
 
-        for (int i = 1; i < 4; i++)
+        int i = 1;
+
+        while (i < 4)
         {
+            Debug.Log("Moving AI Tile; " + i);
+            Tile newAiTile = TileManager.instance.GetRandomPoolTile();
+            playerTileWalls[i].InsertTile(newAiTile);
+
+
+            TileManager.instance.RemoveTileFromPool(newAiTile);
             yield return new WaitForSeconds(aiPickUpTileDelay);
-            playerTileWalls[i].InsertTile(TileManager.instance.GetRandomPoolTile());
+            i++;
         }
 
         canPickUp = true;
+        //yield return null; 
     }
+
+    public void ShuffleFinished()
+    {
+        gameState = GameState.WALL;
+
+    }
+
+    public bool CanShuffle()
+    {
+        return gameState == GameState.SHUFFLE; 
+    }
+
 
     //private IEnumerator MoveSmoothly()
     //{
