@@ -33,9 +33,12 @@ public class GameManager : MonoBehaviour
 
 
 
+
+
     private void Awake()
     {
-        instance = this; 
+        instance = this;
+     
     }
 
     public bool CanPickUpTile(Tile tile)
@@ -121,12 +124,14 @@ public class GameManager : MonoBehaviour
     public void ShuffleFinished()
     {
         gameState = GameState.WALL;
+       
 
     }
 
     public bool CanShuffle()
     {
-        return gameState == GameState.SHUFFLE; 
+        return gameState == GameState.SHUFFLE;
+       
     }
 
 

@@ -17,22 +17,24 @@ public class TileSpawner : MonoBehaviour
     public List<int> mappingIDs = new List<int>();
     public GameObject tilePrefab;
     public Transform gridStartRef;
-    public int gridSize = 15;
-    public float cellSize = 0.4f;
+    public int gridSize = 13;
+    public float cellSize = 0.2f;
 
     public List<List<bool>> tileGrid = new List<List<bool>>();
 
 
-    float xRange = 3f;
-    float zRange = 3f;
-    float yPos = 6.7f;
+    float xRange = 0.8f;
+    float zRange = 0.8f;
+    float yPos = 1.0f;
 
-    private Vector3 target = new Vector3(0.0f, 6.7f, 0.0f);
+    private Vector3 target = new Vector3(0.0f, 1.0f, 0.0f);
 
     public int shuffleCount = 10;
     public float shuffleDelay = 0.1f;
 
-    private Vector3 centre = new Vector3(0.0f, 6.7f, 0.0f);
+    private Vector3 centre = new Vector3(0.0f, 1.0f, 0.0f);
+
+    public AudioSource washingSound;
 
     // public Button shuffleButton;
 
@@ -40,7 +42,7 @@ public class TileSpawner : MonoBehaviour
     void Start()
     {
         SpawnTiles();
-
+        washingSound = GetComponent<AudioSource>();
 
 
 
@@ -149,6 +151,7 @@ public class TileSpawner : MonoBehaviour
         if (other.gameObject.tag == "Hand" && GameManager.instance.CanShuffle())
         {
             StartCoroutine(ShuffleTiles());
+            washingSound.Play();
         }
     }
 
@@ -164,7 +167,10 @@ public class TileSpawner : MonoBehaviour
             currentShuffleCount++;
         }
 
-        GameManager.instance.ShuffleFinished(); 
+        GameManager.instance.ShuffleFinished();
+
+        washingSound.Stop(); 
+
     }
 
 }
